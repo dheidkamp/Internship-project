@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from pages.base_page import Page
 from selenium.webdriver.support.ui import Select
 
+
 class InternshipRegistrationPage(Page):
     NAME_FIELD = (By.ID, 'Full-Name')
     Name_Input = 'FirstName'

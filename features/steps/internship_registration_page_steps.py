@@ -31,9 +31,6 @@ def enter_text(context):
     context.app.internship_registration_page.enter_information_company_size()
     sleep(1)
 
-# def click_registration_boxes(context):
-#     context.app.internship_registration_page.select_from_dropdown("Developer")
-
 
 @then('Verify the right information is present')
 def verify_registration(context):
