@@ -10,10 +10,19 @@ def browser_init(context):
     """
     :param context: Behave context
     """
-    # CHROME BROWSER
+    # # CHROME BROWSER
     # service = Service(executable_path=r'C:\Users\dheid\python-selenium-automation\chromedriver.exe')
-    # # service = Service(ChromeDriverManager().install())
-    # context.driver = webdriver.Chrome(service=service)
+    service = Service(ChromeDriverManager().install())
+    context.driver = webdriver.Chrome(service=service)
+
+    #### Mobile emulation
+    mobile_emulation = {"deviceName": "iPhone 12 Pro"}
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    context.driver = webdriver.Chrome(options=chrome_options)
+
+    # driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub', desired_capabilities=chrome_options.to_capabilities())
 
     # # FIREFOX BROWSER
     # service = Service(executable_path=r'\Users\dheid\OneDrive\Desktop\Automation_Internship\geckodriver')
@@ -36,21 +45,22 @@ def browser_init(context):
     #     options=options,
     #     service=service
     # )
+
     # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
-    bs_user = 'davidheidkamp_niuIE7'
-    bs_key = 'iAiL5eUMUEz8rsu2osoQ'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
 
-    options = Options()
-    bstack_options = {
-        'os': 'OS X',
-        'osVersion': 'Big Sur',
-        'browserName': 'Chrome',
-        'sessionName': 'Registration_Page'
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
-
+    # bs_user = 'davidheidkamp_niuIE7'
+    # bs_key = 'iAiL5eUMUEz8rsu2osoQ'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
+    #     'os': 'OS X',
+    #     'osVersion': 'Big Sur',
+    #     'browserName': 'Chrome',
+    #     'sessionName': 'Registration_Page'
+    # }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
