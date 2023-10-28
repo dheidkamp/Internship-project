@@ -14,13 +14,13 @@ def open_registration_page(context):
 def enter_text(context):
     context.app.internship_registration_page.enter_information_name_field()
     sleep(1)
-    context.app.internship_registration_page.enter_information_company_field()
-    sleep(1)
     context.app.internship_registration_page.enter_information_phone_field()
     sleep(1)
     context.app.internship_registration_page.enter_information_email_field()
     sleep(1)
     context.app.internship_registration_page.enter_information_password_field()
+    sleep(1)
+    context.app.internship_registration_page.enter_company_website()
     sleep(1)
     context.app.internship_registration_page.select_role()
     sleep(1)
@@ -28,15 +28,13 @@ def enter_text(context):
     sleep(1)
     context.app.internship_registration_page.select_country()
     sleep(1)
-    context.app.internship_registration_page.enter_information_company_size()
-    sleep(1)
+    context.app.internship_registration_page.select_company_size()
 
 
 @then('Verify the right information is present')
 def verify_registration(context):
     context.app.internship_registration_page.verify_registration_text_name_field()
-    context.app.internship_registration_page.verify_registration_text_company_field()
     context.app.internship_registration_page.verify_registration_text_phone_field()
     context.app.internship_registration_page.verify_registration_text_email_field()
     context.app.internship_registration_page.verify_registration_text_password_field()
-    context.app.internship_registration_page.verify_registration_text_company_size()
+    context.app.internship_registration_page.verify_enter_company_website_field()
